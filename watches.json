@@ -1,0 +1,511 @@
+{
+  "name": "watches",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5e737c1d-071f-42bd-b4aa-435fb527d75d",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        420,
+        0
+      ],
+      "id": "19f8693c-fceb-4fe5-820e-0b753d824044",
+      "name": "Webhook",
+      "webhookId": "5e737c1d-071f-42bd-b4aa-435fb527d75d"
+    },
+    {
+      "parameters": {
+        "chatId": "364289818",
+        "text": "={{ $json.telegramAlert }}",
+        "additionalFields": {
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        980,
+        -360
+      ],
+      "id": "eb62e4a3-7b83-48ac-a45c-36af59f57ce0",
+      "name": "Telegram",
+      "webhookId": "66d80884-0aa9-48be-a9a6-974a24f3516a",
+      "alwaysOutputData": false,
+      "notesInFlow": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "CjB749pQBiyaKXln",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MBcmkwdjGBBn8jT2TdzczLzCZSgS0FgouOkTyUXq1oY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MBcmkwdjGBBn8jT2TdzczLzCZSgS0FgouOkTyUXq1oY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Имя": "={{ $json.googleSheets.name }}",
+            "Email": "={{ $json.googleSheets.email }}",
+            "Summary": "={{ $json.googleSheets.summary }}",
+            "Brand": "={{ $json.googleSheets.brand }}",
+            "Дата (ISO)": "={{ $json.googleSheets.data }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Имя",
+              "displayName": "Имя",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Brand",
+              "displayName": "Brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Дата (ISO)",
+              "displayName": "Дата (ISO)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        980,
+        -220
+      ],
+      "id": "c1f95486-c6b4-4b7f-b3c8-6a11650f2a86",
+      "name": "Leads table",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MeGqF877uMpdZGWJ",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MBcmkwdjGBBn8jT2TdzczLzCZSgS0FgouOkTyUXq1oY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297855918,
+          "mode": "list",
+          "cachedResultName": "Watches",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MBcmkwdjGBBn8jT2TdzczLzCZSgS0FgouOkTyUXq1oY/edit#gid=297855918"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Brand": "={{ $json.watchDBinfo.brand }}",
+            "Имя клиента": "={{ $json.watchDBinfo.client }}",
+            "Дата": "={{ $json.watchDBinfo.data }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Brand",
+              "displayName": "Brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Имя клиента",
+              "displayName": "Имя клиента",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Дата",
+              "displayName": "Дата",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        980,
+        -80
+      ],
+      "id": "e488c38b-523b-4e19-bdcc-b95c43fbc9a7",
+      "name": "Watches table",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MeGqF877uMpdZGWJ",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json.body;\n\nif (!data.email?.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/)) throw new Error('Invalid email'); \nif (!data.message?.trim()) throw new Error('Empty message');\n\nreturn data;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        0
+      ],
+      "id": "1ddbf0dc-e948-4b77-b38e-c88102db861e",
+      "name": "Validation",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "noData",
+        "options": {
+          "responseCode": 500
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        1660,
+        20
+      ],
+      "id": "f3266ee8-af62-4805-be82-20ea96f64cee",
+      "name": "Respond on Error"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $('Prepare Data').item.json.clientResponse }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        1660,
+        -240
+      ],
+      "id": "e0b6e047-28f7-4d7e-90b7-be6bce389a7d",
+      "name": "Respond on Success",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MBcmkwdjGBBn8jT2TdzczLzCZSgS0FgouOkTyUXq1oY",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1655355626,
+          "mode": "list",
+          "cachedResultName": "Errors",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MBcmkwdjGBBn8jT2TdzczLzCZSgS0FgouOkTyUXq1oY/edit#gid=1655355626"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Error": "={{ $json.error.toString().split(/\\[line \\d+\\]/)[0].trim() }}",
+            "Дата": "={{new Date().toISOString()}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Error",
+              "displayName": "Error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Дата",
+              "displayName": "Дата",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1500,
+        20
+      ],
+      "id": "d6411a79-374c-4273-a79b-72fde5678a8e",
+      "name": "Errors table",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "MeGqF877uMpdZGWJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1180,
+        -220
+      ],
+      "id": "35345fa3-75cb-47b2-a067-9765064d194d",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const isTelegramFail = Object.keys($(\"Telegram\").first().json || {}).length === 0;\nconst isLeadsSheetFail = $('Leads table').first().json.hasOwnProperty('error');\nconst isWatchesSheetFail = $('Watches table').first().json.hasOwnProperty('error');\n\nconst errorMessage = [\n  isTelegramFail ? 'Telegram' : null,\n  isLeadsSheetFail ? 'Leads table' : null,\n  isWatchesSheetFail ? 'Watches table' : null\n].filter(Boolean).join(', ');\n\nif (errorMessage) {\n  throw new Error(`An error on ${errorMessage}`);\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        -220
+      ],
+      "id": "908f75ae-d537-4ab1-9aab-ab5438ed28cb",
+      "name": "Check Alert Errors",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const { name, email, message } = $input.first().json;\n\nconst brand = [\"Rolex\", \"Omega\", \"Patek\"].find(b => \n  message.toLowerCase().includes(b.toLowerCase())\n) || \"none\";\n\nconst watchData = brand !== \"none\" ? {\n  brand: brand,\n  client: name,\n  data: new Date().toISOString()\n} : null;\n\nreturn {\n  clientResponse: {\n    reply: \"Ваше сообщение принято, спасибо!\"\n  },\n  \n  telegramAlert: `Новый лид: ${name} – ${brand !== \"none\" ? brand : \"бренд не указан\"}`,\n\n  googleSheets: {\n    name: name,\n    email: email,\n    summary: `Получено сообщение \"${message}\"`,\n    brand: brand,\n    data: new Date().toISOString()\n  },\n\n  watchDBinfo: watchData\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        -220
+      ],
+      "id": "9dfbdfc7-6aa3-4c2c-a975-96d1dc73efd8",
+      "name": "Prepare Data"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Watches table": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ],
+        []
+      ]
+    },
+    "Validation": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Errors table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leads table": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        []
+      ]
+    },
+    "Respond on Success": {
+      "main": [
+        []
+      ]
+    },
+    "Errors table": {
+      "main": [
+        [
+          {
+            "node": "Respond on Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Check Alert Errors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Alert Errors": {
+      "main": [
+        [
+          {
+            "node": "Respond on Success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Errors table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data": {
+      "main": [
+        [
+          {
+            "node": "Leads table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Watches table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "b1136252-6b8d-419e-8e16-a6d67544ba0b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "19685a2db23f0a81aac7d336663317bdee292bcf67505565764b5501ec778972"
+  },
+  "id": "oAYQYsmSLFkXATsN",
+  "tags": []
+}
